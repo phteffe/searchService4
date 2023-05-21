@@ -1,4 +1,4 @@
-package com.example.searchservice4;
+package com.example.searchservice4.model;
 
 import jakarta.persistence.*;
 

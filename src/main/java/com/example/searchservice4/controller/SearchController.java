@@ -1,5 +1,7 @@
-package com.example.searchservice4;
+package com.example.searchservice4.controller;
 
+import com.example.searchservice4.service.SearchService;
+import com.example.searchservice4.model.Message;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,5 +1,7 @@
-package com.example.searchservice4;
+package com.example.searchservice4.service;
 
+import com.example.searchservice4.model.Message;
+import com.example.searchservice4.repository.MessageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
