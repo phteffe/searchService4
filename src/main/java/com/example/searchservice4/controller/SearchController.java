@@ -19,6 +19,11 @@ public class SearchController {
         this.searchService = searchService;
     }
 
+    @GetMapping("/all")
+    public List<Message> searchAllMessages() {
+        return searchService.getMessages();
+    }
+
     @GetMapping("/hashtag/{hashtag}")
     public List<Message> searchByHashtag(@PathVariable("hashtag") String hashtagToSearch) {
         return searchService.searchByHashtag(hashtagToSearch);

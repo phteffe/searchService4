@@ -1,19 +1,45 @@
 package com.example.searchservice4.model;
 
-import jakarta.persistence.*;
 
-@Entity
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
+
+@Document(collection = "messages")
 public class Message {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column
+    private String id;
+    private String userId;
     private String content;
+    private List<String> hashtags;
 
-    // Add other necessary fields, such as sender, timestamp, hashtags, etc.
+    public String getId() {
+        return id;
+    }
 
-    // Getters and setters
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public List<String> getHashtags() {return hashtags;}
+    public void setHashtags(List<String> hashtags) {this.hashtags = hashtags;}
 
 }

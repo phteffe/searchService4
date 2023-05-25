@@ -14,8 +14,10 @@ public class MessageConsumerService {
         this.messageRepository = messageRepository;
     }
 
-    @RabbitListener(queues = "messageQueue")
+    @RabbitListener(queues = "messagesQueue")
     public void receiveMessage(Message message) {
+
+        System.out.println("Message read from myQueue : " + message.getId());
         messageRepository.save(message);
     }
 }

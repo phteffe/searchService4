@@ -16,18 +16,22 @@ import java.util.List;
 
 @Service
 public class SearchService {
-    private final MessageRepository messageRepository;
+    private MessageRepository messageRepository;
 
     public SearchService(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
     }
 
+    public List<Message> getMessages() {
+        return messageRepository.findAll();
+    }
+
     public List<Message> searchByHashtag(String hashtagToSearch) {
-        return null;
+        return messageRepository.searchByHashtag(hashtagToSearch);
     }
 
     public List<Message> searchByText(String textToSearch) {
-        return messageRepository.findByContentContaining(textToSearch);
+        return messageRepository.searchAllByContent(textToSearch);
 
     }
 
