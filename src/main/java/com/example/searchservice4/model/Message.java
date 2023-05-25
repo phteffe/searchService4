@@ -4,6 +4,7 @@ package com.example.searchservice4.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "messages")
@@ -37,9 +38,20 @@ public class Message {
 
     public void setContent(String content) {
         this.content = content;
+        extractHashtags();
     }
 
     public List<String> getHashtags() {return hashtags;}
-    public void setHashtags(List<String> hashtags) {this.hashtags = hashtags;}
+    private void extractHashtags() {
+        if (content != null && !content.isEmpty()) {
+            hashtags = new ArrayList<>();
+            String[] words = content.split("\\s+");
+            for (String word : words) {
+                if (word.startsWith("#")) {
+                    hashtags.add(word.substring(1));
+                }
+            }
+        }
+    }
 
 }
