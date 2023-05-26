@@ -13,7 +13,7 @@ public interface MessageRepository extends MongoRepository<Message, String> {
     @Query("{ 'content' : { $regex: ?0, $options: 'i' } }")
     List<Message> searchAllByContent(String text);
 
-    @Query("{ 'hashtags' : { $regex: '^0$', $options: 'i' } }")
+    @Query("{ 'hashtags' : { $regex: '^?0', $options: 'i' } }")
     List<Message> searchByHashtag(String hashtag);
 
 }
