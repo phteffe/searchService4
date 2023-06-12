@@ -42,5 +42,16 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+
+  postmessageservice:
+    image: ghcr.io/chatgut/micropostservice:main
+    container_name: postService
+    restart: on-failure
+    depends_on:
+      - mongodb
+      - rabbitMQ
+    environment:
+      ROCKET_DATABASES: '{postservice={url="mongodb://dbMongoDB:27017"}}'
+      ROCKET_RABBIT_HOST: "amqp://QueueRabbitMQ:5672"
 volumes:
   mongodb:
