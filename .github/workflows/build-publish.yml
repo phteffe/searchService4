@@ -17,4 +17,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: Phteffe/chatgut:${{ github.sha }}
+        tags: phteffe/chatgut:${{ github.sha }}
