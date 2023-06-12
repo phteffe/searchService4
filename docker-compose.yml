@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+
+  searchapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: searchservice
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - mongodb
+      - rabbitMQ
+
+    environment:
+      MONGO_URL: localhost
+      MONGO_USER:
+      MONGO_PASS:
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+      SPRING_RABBITMQ_HOST: QueueRabbitMQ
+
+  mongodb:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongodb
+    volumes:
+      - mongodb:/var/lib/mongodb
+    ports:
+      - "27017:27017"
+
+
+  rabbitMQ:
+    image: rabbitmq:3.11-management
+    container_name: QueueRabbitMQ
+    volumes:
+      - mongodb:/var/lib/rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+volumes:
+  mongodb:
